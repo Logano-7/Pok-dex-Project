@@ -12,7 +12,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/library" element={<LibraryPage />} />
         <Route path="/library/:id" element={<PokeViewPage />} />
-        <Route path="/compare" element={<ComparePage />} />
         <Route path="/credits" element={<CreditsPage />} />
       </Routes>
       <Footer />

@@ -2,25 +2,17 @@ import { NavLink } from "react-router-dom";
 function NavBar() {
   return (
     <nav>
-      <ul
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          listStyle: "none",
-          padding: "1rem",
-        }}
-      >
-        <li>
+      <h1>
           <NavLink to="/">PokeDex</NavLink>
-        </li>
+        </h1>
+      <ul
+        className="NavBar"
+      >
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
         <li>
           <NavLink to="/library">Library</NavLink>
-        </li>
-        <li>
-          <NavLink to="/compare">Compare</NavLink>
         </li>
         <li>
           <NavLink to="/credits">Credits</NavLink>
