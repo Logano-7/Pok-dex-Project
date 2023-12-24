@@ -96,8 +96,12 @@ export function filterByWeakness(list, weakness) {
 
 export function filterByName(list, name) {
   const filteredList = [];
+  const lowercaseName = name.toLowerCase(); // Convert name to lowercase
+
   for (let i = 0; i < list.length; i++) {
-    if (list[i].name=== name) {
+    const lowercaseListItemName = list[i].name.toLowerCase(); // Convert list item name to lowercase
+
+    if (lowercaseListItemName === lowercaseName) {
       filteredList.push(list[i]);
     }
   }

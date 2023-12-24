@@ -8,9 +8,8 @@ import {
 
 function LibraryPage() {
   const [Pokemon, setPokemon] = useState([]);
-  const [filterType, setFilterType] = useState("All");
-  const [filterWeakness, setFilterWeakness] = useState("All");
-  const [search, setSearch] = useState([]);
+  const [filterType, setFilterType] = useState("");
+  const [filterWeakness, setFilterWeakness] = useState("");
 
   const fetchURL =
     "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json";
@@ -25,38 +24,39 @@ function LibraryPage() {
 
   function filterPokemon() {
     let filteredPokemonList = [];
-    if (filterType === "All" && filterWeakness === "All" && search === "") {
-      filteredPokemonList = Pokemon;
-      return filteredPokemonList;
-    } else if (search !== "") {
-      filteredPokemonList = filterByName(Pokemon, search);
-      return filteredPokemonList;
-    } else if (filterType !== "All" && filterWeakness !== "All") {
+    if (filterType === "" && filterWeakness === "") {
+      return Pokemon;
+    } else if (filterType !== "" && filterWeakness !== "") {
       filteredPokemonList = filterByType(Pokemon, filterType);
       filteredPokemonList = filterByWeakness(
         filteredPokemonList,
         filterWeakness
-        );
-        console.log(filteredPokemonList);
-        return filteredPokemonList;
-      } else if (filterType !== "All") {
-        filteredPokemonList = filterByType(Pokemon, filterType);
-        return filteredPokemonList;
-      } else if (filterWeakness !== "All") {
-        filteredPokemonList = filterByWeakness(Pokemon, filterWeakness);
-        return filteredPokemonList;
-      } else {
-        return filteredPokemonList;
+      );
+      console.log(filteredPokemonList);
+      return filteredPokemonList;
+    } else if (filterType !== "") {
+      console.log(filterType);
+      console.log(filterWeakness);
+      console.log(filteredPokemonList);
+      console.log(Pokemon);
+
+      filteredPokemonList = filterByType(Pokemon, filterType);
+      return filteredPokemonList;
+    } else if (filterWeakness !== "") {
+      filteredPokemonList = filterByWeakness(Pokemon, filterWeakness);
+      return filteredPokemonList;
+    } else {
+      return filteredPokemonList;
     }
   }
-  const filteredPokeList = filterPokemon();
 
+  const filteredPokeList = filterPokemon();
 
   return (
     <>
-      <form className="searchBar">
+      <form className="searchBar" id="searchBar">
         <input type="text" placeholder="Search Pokemon" />
-        <button type="submit">
+        <button type="submit" >
           Submit
         </button>
       </form>
@@ -70,7 +70,7 @@ function LibraryPage() {
             id="filterType"
             onChange={(e) => setFilterType(e.target.value)}
           >
-           <option value="All">All</option>
+            <option value="">All</option>
             <option value="Grass">Grass</option>
             <option value="Fire">Fire</option>
             <option value="Water">Water</option>
@@ -79,14 +79,12 @@ function LibraryPage() {
             <option value="Poison">Poison</option>
             <option value="Electric">Electric</option>
             <option value="Ground">Ground</option>
-            <option value="Fairy">Fairy</option>
             <option value="Fighting">Fighting</option>
             <option value="Psychic">Psychic</option>
             <option value="Rock">Rock</option>
             <option value="Ghost">Ghost</option>
             <option value="Ice">Ice</option>
             <option value="Dragon">Dragon</option>
-            <option value="Steel">Steel</option>
             <option value="Flying">Flying</option>
           </select>
         </div>
@@ -97,7 +95,7 @@ function LibraryPage() {
             id="filterWeakness"
             onChange={(e) => setFilterWeakness(e.target.value)}
           >
-            <option value="All">All</option>
+            <option value="">All</option>
             <option value="Grass">Grass</option>
             <option value="Fire">Fire</option>
             <option value="Water">Water</option>
@@ -106,14 +104,12 @@ function LibraryPage() {
             <option value="Poison">Poison</option>
             <option value="Electric">Electric</option>
             <option value="Ground">Ground</option>
-            <option value="Fairy">Fairy</option>
             <option value="Fighting">Fighting</option>
             <option value="Psychic">Psychic</option>
             <option value="Rock">Rock</option>
             <option value="Ghost">Ghost</option>
             <option value="Ice">Ice</option>
             <option value="Dragon">Dragon</option>
-            <option value="Steel">Steel</option>
             <option value="Flying">Flying</option>
           </select>
         </div>
