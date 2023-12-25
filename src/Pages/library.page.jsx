@@ -54,80 +54,84 @@ function LibraryPage() {
 
   return (
     <>
-      <form className="searchBar" id="searchBar">
-        <input type="text" placeholder="Search Pokemon" />
-        <button type="submit" >
-          Submit
-        </button>
-      </form>
-
-      <div className="filterBar">
-        <h3>Filter By:</h3>
-        <div className="filterBarType">
-          <h4>Type</h4>
-          <select
-            name="filterType"
-            id="filterType"
-            onChange={(e) => setFilterType(e.target.value)}
-          >
-            <option value="">All</option>
-            <option value="Grass">Grass</option>
-            <option value="Fire">Fire</option>
-            <option value="Water">Water</option>
-            <option value="Bug">Bug</option>
-            <option value="Normal">Normal</option>
-            <option value="Poison">Poison</option>
-            <option value="Electric">Electric</option>
-            <option value="Ground">Ground</option>
-            <option value="Fighting">Fighting</option>
-            <option value="Psychic">Psychic</option>
-            <option value="Rock">Rock</option>
-            <option value="Ghost">Ghost</option>
-            <option value="Ice">Ice</option>
-            <option value="Dragon">Dragon</option>
-            <option value="Flying">Flying</option>
-          </select>
+      <div className="libraryTopBar">
+        <div className="nameRow">
+          <h1>Pokemon Library</h1>
+          <form className="searchBar" id="searchBar">
+            <input type="text" placeholder="Search Pokemon" />
+            <button type="submit">Submit</button>
+          </form>
         </div>
-        <div className="filterBarWeakness">
-          <h4>Weakness</h4>
-          <select
-            name="filterWeakness"
-            id="filterWeakness"
-            onChange={(e) => setFilterWeakness(e.target.value)}
-          >
-            <option value="">All</option>
-            <option value="Grass">Grass</option>
-            <option value="Fire">Fire</option>
-            <option value="Water">Water</option>
-            <option value="Bug">Bug</option>
-            <option value="Normal">Normal</option>
-            <option value="Poison">Poison</option>
-            <option value="Electric">Electric</option>
-            <option value="Ground">Ground</option>
-            <option value="Fighting">Fighting</option>
-            <option value="Psychic">Psychic</option>
-            <option value="Rock">Rock</option>
-            <option value="Ghost">Ghost</option>
-            <option value="Ice">Ice</option>
-            <option value="Dragon">Dragon</option>
-            <option value="Flying">Flying</option>
-          </select>
+
+        <div className="filterBar">
+          <h3>Filter By</h3>
+          <div className="filterBarType">
+            <h4>Type: </h4>
+            <select
+              name="filterType"
+              id="filterType"
+              onChange={(e) => setFilterType(e.target.value)}
+            >
+              <option value="">All</option>
+              <option value="Grass">Grass</option>
+              <option value="Fire">Fire</option>
+              <option value="Water">Water</option>
+              <option value="Bug">Bug</option>
+              <option value="Normal">Normal</option>
+              <option value="Poison">Poison</option>
+              <option value="Electric">Electric</option>
+              <option value="Ground">Ground</option>
+              <option value="Fighting">Fighting</option>
+              <option value="Psychic">Psychic</option>
+              <option value="Rock">Rock</option>
+              <option value="Ghost">Ghost</option>
+              <option value="Ice">Ice</option>
+              <option value="Dragon">Dragon</option>
+              <option value="Flying">Flying</option>
+            </select>
+          </div>
+          <div className="filterBarWeakness">
+            <h4>Weakness: </h4>
+            <select
+              name="filterWeakness"
+              id="filterWeakness"
+              onChange={(e) => setFilterWeakness(e.target.value)}
+            >
+              <option value="">All</option>
+              <option value="Grass">Grass</option>
+              <option value="Fire">Fire</option>
+              <option value="Water">Water</option>
+              <option value="Bug">Bug</option>
+              <option value="Normal">Normal</option>
+              <option value="Poison">Poison</option>
+              <option value="Electric">Electric</option>
+              <option value="Ground">Ground</option>
+              <option value="Fighting">Fighting</option>
+              <option value="Psychic">Psychic</option>
+              <option value="Rock">Rock</option>
+              <option value="Ghost">Ghost</option>
+              <option value="Ice">Ice</option>
+              <option value="Dragon">Dragon</option>
+              <option value="Flying">Flying</option>
+            </select>
+          </div>
         </div>
       </div>
-
-      {filteredPokeList.map((pokemon) => (
-        <div className="pokeListyCard" key={pokemon.id}>
-          <Link to={`/library/${pokemon.id}`}>
-            <img src={pokemon.img} alt={pokemon.name} />
-            <h3>{pokemon.name}</h3>
-          </Link>
-          <p>#{pokemon.id}</p>
-          <p>Height: {pokemon.height}</p>
-          <p>Weight: {pokemon.weight}</p>
-          <p>Type: {pokemon.type.join(", ")}</p>
-          <p>Weaknesses: {pokemon.weaknesses.join(", ")}</p>
-        </div>
-      ))}
+      <div className="library">
+        {filteredPokeList.map((pokemon) => (
+          <div className="pokeListyCard" key={pokemon.id}>
+            <Link to={`/library/${pokemon.id}`}>
+              <h3>{pokemon.name}</h3>
+              <img src={pokemon.img} alt={pokemon.name} />
+            </Link>
+            <p>#{pokemon.id}</p>
+            <p>Height: {pokemon.height}</p>
+            <p>Weight: {pokemon.weight}</p>
+            <p>Type: {pokemon.type.join(", ")}</p>
+            <p>Weaknesses: {pokemon.weaknesses.join(", ")}</p>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
