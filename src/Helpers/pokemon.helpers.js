@@ -71,7 +71,6 @@ export default function getListOf(list, prop) {
     listToReturn.push(list[i][prop]);
   }
   return listToReturn;
-  
 }
 
 export function filterByType(list, type) {
@@ -97,14 +96,16 @@ export function filterByWeakness(list, weakness) {
 export function filterByName(list, name) {
   const filteredList = [];
   const lowercaseName = name.toLowerCase(); // Convert name to lowercase
+  if (!name) {
+    return list;
+  } else {
+    for (let i = 0; i < list.length; i++) {
+      const lowercaseListItemName = list[i].name.toLowerCase(); // Convert list item name to lowercase
 
-  for (let i = 0; i < list.length; i++) {
-    const lowercaseListItemName = list[i].name.toLowerCase(); // Convert list item name to lowercase
-
-    if (lowercaseListItemName === lowercaseName) {
-      filteredList.push(list[i]);
+      if (lowercaseListItemName === lowercaseName) {
+        filteredList.push(list[i]);
+      }
     }
+    return filteredList;
   }
-  return filteredList;
 }
-

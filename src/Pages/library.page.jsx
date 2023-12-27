@@ -32,14 +32,8 @@ function LibraryPage() {
         filteredPokemonList,
         filterWeakness
       );
-      console.log(filteredPokemonList);
       return filteredPokemonList;
     } else if (filterType !== "") {
-      console.log(filterType);
-      console.log(filterWeakness);
-      console.log(filteredPokemonList);
-      console.log(Pokemon);
-
       filteredPokemonList = filterByType(Pokemon, filterType);
       return filteredPokemonList;
     } else if (filterWeakness !== "") {
@@ -57,7 +51,19 @@ function LibraryPage() {
       <div className="libraryTopBar">
         <div className="nameRow">
           <h1>Pokemon Library</h1>
-          <form className="searchBar" id="searchBar">
+          <form
+            className="searchBar"
+            id="searchBar"
+            onSubmit={
+              ("submit",
+              (e) => {
+                e.preventDefault();
+                const searchString = e.target[0].value.toLowerCase();
+                const filteredPokemon = filterByName(Pokemon, searchString);
+                setPokemon(filteredPokemon);
+              })
+            }
+          >
             <input type="text" placeholder="Search Pokemon" />
             <button type="submit">Submit</button>
           </form>
